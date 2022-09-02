@@ -1,0 +1,12 @@
+2022-08-11 14:06:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "create table [*]to-do (\000a                                 id int auto_increment primary key,\000a                                 title varchar(60),\000a                                 description varchar(255))"; expected "identifier"; SQL statement:
+create table to-do (
+                                 id int auto_increment primary key,
+                                 title varchar(60),
+                                 description varchar(255)) [42001-214]
+2022-08-11 14:09:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TO_DO" already exists; SQL statement:
+create table to_do (
+                                 id          varchar(40) primary key,
+                                 title       varchar(60),
+                                 description varchar(255)) [42101-214]
