@@ -3,7 +3,8 @@
             [schema.core :as s]
             [next.jdbc :as jdbc]
             [next.jdbc.result-set :as rs]
-            [hellocomponent.domain.models.to-do :as models.to-do]))
+            [hellocomponent.domain.models.to-do :as models.to-do])
+  (:import [java.util UUID]))
 
 (s/defn create-todo :- models.to-do/Todo
   [{:keys [id title description] :as todo} :- models.to-do/Todo
@@ -26,11 +27,16 @@
     (jdbc/execute! ds ["DELETE FROM to_do WHERE id = ?" id])
     nil))
 
-(s/defn todo-by-id :- models.to-do/Todo
+(defn- uuid-from-str [str]
+  (UUID/fromString str))
+
+(s/defn todo-by-id :- (s/maybe models.to-do/Todo)
   [id :- s/Uuid
    {:keys [db]}]
-  (let [ds (:datasource db)]
-    (jdbc/execute! ds ["SELECT * FROM to_do WHERE id = ?" id] {:builder-fn rs/as-unqualified-lower-maps})))
+  (let [ds     (:datasource db)
+        result (jdbc/execute! ds ["SELECT * FROM to_do WHERE id = ?" id] {:builder-fn rs/as-unqualified-lower-maps})]
+    (when (not-empty result)
+      (update (first result) :id uuid-from-str))))
 
 (s/defn list-all :- [models.to-do/Todo]
   [component]

@@ -8,6 +8,7 @@
   `com.stuartsierra.component.repl/system`.
 
   See also https://github.com/stuartsierra/component.repl"
+  #_{:clj-kondo/ignore [:unused-namespace :unused-referred-var]}
   (:require
    [clojure.java.io :as io]
    [clojure.java.javadoc :refer [javadoc]]

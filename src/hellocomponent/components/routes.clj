@@ -1,5 +1,6 @@
 (ns hellocomponent.components.routes
-  (:require [io.pedestal.http.route :as route]
+  (:require [clojure.set :as set]
+            [io.pedestal.http.route :as route]
             [io.pedestal.interceptor :refer [interceptor]])
   (:import (com.stuartsierra.component Lifecycle)))
 
@@ -36,7 +37,7 @@
                (map (fn [route]
                       (set-interceptor-on-route route controller))
                     expanded-routes)))
-       (reduce clojure.set/union)))
+       (reduce set/union)))
 
 (defrecord Routes []
   Lifecycle

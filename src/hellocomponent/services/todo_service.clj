@@ -16,7 +16,7 @@
    new-title :- s/Str
    new-description :- s/Str
    {:keys [todo-repository]}]
-  (let [updated-todo (assoc todo :title new-title :description new-description)]
+  (let [updated-todo (logic.to-do/updated-todo todo new-title new-description)]
     (repositories.todo-repository/update-todo updated-todo todo-repository)))
 
 (s/defn delete-todo

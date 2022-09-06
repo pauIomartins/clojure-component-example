@@ -9,5 +9,6 @@
 
   Or run `(dev)` to just load code and switch to `dev` without
   starting the system."
+  #_{:clj-kondo/ignore [:unused-namespace :unused-referred-var]}
   (:require
    [com.stuartsierra.component.user-helpers :refer [dev go reset]]))

@@ -1,0 +1,1 @@
+(ns hellocomponent.hello-component)

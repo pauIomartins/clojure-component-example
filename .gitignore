@@ -114,3 +114,6 @@ pom.xml.asc
 .nrepl-port
 .cpcache/
 
+example.mv.db
+example.trace.db
+
